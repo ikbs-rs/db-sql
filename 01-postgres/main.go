@@ -44,8 +44,9 @@ func main() {
 		return
 	}
 	// Jedan slog
-	// Ova sintaksa prolazi sa navodnicima, mozda zbog velikih slova u bazi. Neka stoji dok ne proverim
-	row := conn.QueryRowContext(context.Background(), `SELECT "USER"."NAZIV" FROM "USER" where "USER"."USER_ID" = 'gost'`)
+	// Ova sintaksa prolazi sa navodnicima, mozda zbog slova u bazi.
+	//row := conn.QueryRowContext(context.Background(), `SELECT "USER"."NAZIV" FROM "USER" where "USER"."USER_ID" = 'gost'`)
+	row := conn.QueryRowContext(context.Background(), `select naziv, obj_id from objekat where obj_id = 'obj'`)
 	if err := row.Err(); err != nil {
 		fmt.Println("db.QueryRowContext", err)
 		return
